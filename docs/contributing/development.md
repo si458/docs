@@ -1,7 +1,15 @@
-kubenav requires [Node v8.6.0](https://nodejs.org/) or later, and NPM version 5.6.0 or later (which is usually automatically installed with the required version of Node). If you have Node and NPM installed, install Ionic CLI:
+kubenav requires [Node v8.6.0](https://nodejs.org/) or later, and NPM version 5.6.0 or later (which is usually automatically installed with the required version of Node). 
+
+If there is a previous installation of the Ionic CLI installed, it will need to be uninstalled due to a change in package name for ionic/cli:
 
 ```sh
-npm install -g ionic
+npm uninstall -g ionic
+```
+
+If you have Node and NPM installed, install Ionic CLI:
+
+```sh
+npm install -g @ionic/cli
 ```
 
 Besides Node, kubenav requires [Go 1.14](https://golang.org) or later and [Go mobile](https://github.com/golang/go/wiki/Mobile), which can be installed using the following commands:
@@ -30,6 +38,19 @@ cd kubenav
 npm install
 ```
 
+You must build the kubenav project at least once before running on any native platform:
+
+```sh
+ionic build
+```
+
+You may then build the relevant mobile platform you require
+
+```sh
+make bindings-android
+make bindings-ios
+```
+
 To use kubenav in your browser you need to build and start the server. The server listening on port `14122`:
 
 ```sh
@@ -40,15 +61,6 @@ Now you can start the app and open [localhost:8100](http://localhost:8100) in yo
 
 ```sh
 ionic serve
-```
-
-You must build the kubenav project at least once before running on any native platform:
-
-```sh
-ionic build
-
-make bindings-android
-make bindings-ios
 ```
 
 Every time you perform a build (e.g. `ionic build`) that changes your web directory (default: `build`), you'll need to copy those changes down to your native projects:
